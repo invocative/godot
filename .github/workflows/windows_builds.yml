@@ -68,15 +68,6 @@ jobs:
           target: ${{ matrix.target }}
           tools: ${{ matrix.tools }}
           tests: ${{ matrix.tests }}
-      - name: Generate C# glue
-        if: ${{ matrix.build-mono }}
-        run: |
-          ${{ matrix.bin }} --headless --generate-mono-glue ./modules/mono/glue || true
-
-      - name: Build .NET solutions
-        if: ${{ matrix.build-mono }}
-        run: |
-          ./modules/mono/build_scripts/build_assemblies.py --godot-output-dir=./bin --godot-platform=windows
 
       # Execute unit tests for the editor
       - name: Unit tests
